@@ -14,31 +14,31 @@ window.onload = init;
 function init() {
 
     // When the user clicks the append button, append the given number to the list.
-    document.querySelector('')
+    document.querySelector('#append')
         .addEventListener('click', appendToList);
 
     // When the user clicks the remove button, remove the number at the index given from the list.
-    document.querySelector('')
+    document.querySelector('#remove')
         .addEventListener('click', removeFromList);
 
-    // When the user clicks the clear button, remove all items from the list.
-    document.querySelector('')
-        .addEventListener('click', clearList);
+    // // When the user clicks the clear button, remove all items from the list.
+    // document.querySelector('')
+    //     .addEventListener('click', clearList);
 
-    // When the user clicks the add button, add the value to each item.
-    document.querySelector('')
+    // // When the user clicks the add button, add the value to each item.
+    document.querySelector('#add')
         .addEventListener('click', addToAll);
 
-    // When the user clicks the add button, add the value to each item.
-    document.querySelector('')
+    // // When the user clicks the add button, subtract the value to each item.
+    document.querySelector('#subtract')
         .addEventListener('click', subtractFromAll);
         
-    // When the user clicks the multiply button, multiply the value by each item.
-    document.querySelector('')
+    // // When the user clicks the multiply button, multiply the value by each item.
+    document.querySelector('#multiply')
         .addEventListener('click', multiplyByAll);
         
-    // When the user clicks the divide button, divide the value from each item.
-    document.querySelector('')
+    // // When the user clicks the divide button, divide the value from each item.
+    document.querySelector('#divide')
         .addEventListener('click', divideFromAll);
 }
 
@@ -54,15 +54,21 @@ function appendToList(event) {
     event.preventDefault();
 
     // Get the value we're going to append from the input field.
-    let number = document.querySelector('').value;
-
+    const newNumber = document.querySelector('#list-number').value;
+    const isNewNumber = parseInt(newNumber, 10);
+    resetInput();
     // Append the number to our array.
     // Hint: here (and elsewhere), watch the TYPE of the value above.
     // Research `typeof` operator if you're not sure.
 
+    if(typeof isNewNumber === "number" && newNumber !== '' && isNewNumber === isNewNumber) {
+        addToUL(isNewNumber);
+        numbers.push(isNewNumber);
+        console.log(`Numbers: ${numbers}`);
+        
+    }
+    console.log(`NewNumber: ${newNumber}`);
     // Update our html.
-
-
 }
 // Remove from the list.
 function removeFromList(event) {
@@ -70,7 +76,7 @@ function removeFromList(event) {
     event.preventDefault();
 
     // Get the index we'll remove from the input field.
-    let index = document.querySelector('').value;
+    let index = document.querySelector('#list-number').value;
 
     // Remove the number at that index from the list.
 
@@ -126,7 +132,7 @@ function subtractFromAll(event) {
     event.preventDefault();
     
     // Grab value to subtract.
-    let numberToSubtract = document.querySelector('').value;
+    let numberToSubtract = document.querySelector('#number-list').value;
     
     // Subtract value from everything on the list.
   
@@ -186,8 +192,13 @@ function clearUL() {
 
 // Append to the UL.
 function addToUL(numberToAppend) {
-    const ul = document.querySelector('');
-    const newLI = document.createElement('');
+    const ul = document.querySelector('#number-list');
+    const newLI = document.createElement('li');
     newLI.innerText = numberToAppend;
-    UL.appendChild(newLI);
+    ul.appendChild(newLI);
+}
+
+function resetInput() {
+    // Resets input field to blank. No need to add anything here!
+    document.querySelector('#list-number').value = '';
 }
