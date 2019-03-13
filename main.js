@@ -64,11 +64,9 @@ function appendToList(event) {
     if(typeof isNewNumber === "number" && newNumber !== '' && isNewNumber === isNewNumber) {
         addToUL(isNewNumber);
         numbers.push(isNewNumber);
-        console.log(`Numbers: ${numbers}`);
-        
     }
-    console.log(`NewNumber: ${newNumber}`);
     // Update our html.
+    updateUL();
 }
 // Remove from the list.
 function removeFromList(event) {
@@ -76,23 +74,21 @@ function removeFromList(event) {
     event.preventDefault();
 
     // Get the index we'll remove from the input field.
-    let index = document.querySelector('#list-number').value;
-
+    const str = document.querySelector('#list-number').value;
+    const index = Number(str); 
     // Remove the number at that index from the list.
+    numbers.splice(index, 1);
+        // ### Hints:
 
-    /*
-        ### Hints:
+    //     * You can either loop through... or use array methods. Check out concat!
 
-        * You can either loop through... or use array methods. Check out concat!
-
-        * Either way, though, we've declared out array using `let` this time,
-        and reassigning the array is probably the best approach with our current
-        tools.
-    */
+    //     * Either way, though, we've declared out array using `let` this time,
+    //     and reassigning the array is probably the best approach with our current
+    //     tools.
+    // */
 
     // Update our html.
-
-
+    updateUL();
 }
 
 function clearList(event) {
@@ -100,10 +96,12 @@ function clearList(event) {
     event.preventDefault();
 
     // Clear the array of all values.
-
+    // while(numbers.length > 0) {
+    //     numbers.pop();
+    // }
 
     // Update our html.
-    
+    // clearUL();
 }
 
 /*
@@ -118,13 +116,15 @@ function addToAll(event) {
     event.preventDefault();
 
     // Grab value to add.
-    let numberToAdd = document.querySelector('').value;
-
+    const numberToAdd = document.querySelector('#number-for-math').value;
+    const isNumberToAdd = parseInt(numberToAdd , 10);
     // Add value to everything on the list.
-
+    for(let i = 0; i < numbers.length; i++) {
+        numbers[i] = numbers[i] + isNumberToAdd;
+    }
 
     // Update our html.
-
+    updateUL();
 }
 
 function subtractFromAll(event) {
@@ -132,13 +132,15 @@ function subtractFromAll(event) {
     event.preventDefault();
     
     // Grab value to subtract.
-    let numberToSubtract = document.querySelector('#number-list').value;
-    
+    const numberToSubtract = document.querySelector('#number-for-math').value;
+    const isNumberToSubtract = parseInt(numberToSubtract, 10);
     // Subtract value from everything on the list.
-  
+    for(let i = 0; i < numbers.length; i++) {
+        numbers[i] = numbers[i] - isNumberToSubtract;
+    }
 
     // Update our html.
-
+    updateUL();
 }
 
 function multiplyByAll(event) {
@@ -146,13 +148,16 @@ function multiplyByAll(event) {
     event.preventDefault();
     
     // Grab value to multiply.
-    let numberToMultiply = document.querySelector('').value;
+    const numberToMultiply = document.querySelector('#number-for-math').value;
+    const isNumberToMultiply = parseInt(numberToMultiply, 10);
     
     // Multiply value by everything on the list.
-    
+    for(let i = 0; i < numbers.length; i++) {
+        numbers[i] = numbers[i] * isNumberToMultiply;
+    }
     
     // Update our html.
-    
+    updateUL();
 }
 
 function divideFromAll(event) {
@@ -160,13 +165,15 @@ function divideFromAll(event) {
     event.preventDefault();
 
     // Grab value to add.
-    let numberToDivide = document.querySelector('').value;
-
+    const numberToDivide = document.querySelector('#number-for-math').value;
+    const isNumberToDivide = parseInt(numberToDivide, 10);
     // Divide value from everything on the list.
-    
+    for(let i = 0; i < numbers.length; i++) {
+        numbers[i] = numbers[i] / isNumberToDivide;
+    }
 
     // // Update our html.plo
-    
+    updateUL();
 }
 
 
@@ -184,7 +191,7 @@ function updateUL() {
 }
 
 function clearUL() {
-    const ul = document.querySelector('');
+    const ul = document.querySelector('#number-list');
     while(ul.hasChildNodes()) {
         ul.removeChild(ul.firstChild);
     }
