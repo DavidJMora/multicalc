@@ -22,8 +22,8 @@ function init() {
         .addEventListener('click', removeFromList);
 
     // // When the user clicks the clear button, remove all items from the list.
-    // document.querySelector('')
-    //     .addEventListener('click', clearList);
+    document.querySelector('#clear')
+        .addEventListener('click', clearList);
 
     // // When the user clicks the add button, add the value to each item.
     document.querySelector('#add')
@@ -96,12 +96,12 @@ function clearList(event) {
     event.preventDefault();
 
     // Clear the array of all values.
-    // while(numbers.length > 0) {
-    //     numbers.pop();
-    // }
+    while(numbers.length > 0) {
+        numbers.pop();
+    }
 
     // Update our html.
-    // clearUL();
+    clearUL();
 }
 
 /*
